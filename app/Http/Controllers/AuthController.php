@@ -54,10 +54,10 @@ class AuthController extends Controller
     }
 
     /**
-     * @unauthenticated
+     * Register
      */
     /**
-     * Register
+     * @unauthenticated
      */
     public function register(Request $request)
     {
