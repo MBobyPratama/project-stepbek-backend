@@ -9,11 +9,12 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
 
-    /**
-     * @unauthenticated
-     */
+
     /**
      * Login
+     */
+    /**
+     * @unauthenticated
      */
     public function login(Request $request)
     {
