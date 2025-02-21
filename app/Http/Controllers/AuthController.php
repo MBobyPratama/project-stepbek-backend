@@ -67,7 +67,7 @@ class AuthController extends Controller
             'password' => 'required|min:8|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/|regex:/[^a-zA-Z0-9]/|regex:/[!@#$%^&*()\-_=+{};:,<.>]/',
         ]);
 
-        $user = User::create([
+        $user = User::factory()->create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
