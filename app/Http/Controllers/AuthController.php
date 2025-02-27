@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+
+
+    /**
+     * Login
+     */
     /**
      * @unauthenticated
      */
@@ -33,6 +38,43 @@ class AuthController extends Controller
         return response()->json([
             'user' => $user,
             'token' => $token,
+        ]);
+    }
+
+    /**
+     * Logout
+     */
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json([
+            'message' => 'Successfully logged out'
+        ]);
+    }
+
+    /**
+     * Register
+     */
+    /**
+     * @unauthenticated
+     */
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users|max:255',
+            'password' => 'required|min:8|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/|regex:/[^a-zA-Z0-9]/|regex:/[!@#$%^&*()\-_=+{};:,<.>]/',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return response()->json([
+            'user' => $user,
         ]);
     }
 }
