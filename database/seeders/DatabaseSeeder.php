@@ -23,5 +23,14 @@ class DatabaseSeeder extends Seeder
             'nomor_telepon' => '081234567890',
             'alamat' => 'Jl. Contoh No. 123',
         ]);
+
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test2@example.com',
+            'password' => bcrypt('password'),
+            'role' => 'user',
+            'nomor_telepon' => '081234567890',
+            'alamat' => 'Jl. Contoh No. 123',
+        ]);
     }
 }
