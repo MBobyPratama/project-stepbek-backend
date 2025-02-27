@@ -16,6 +16,7 @@ class Pembayaran extends Model
      * @var list<string>
      */
     protected $fillable = [
+        'nomor_pembayaran',
         'id_tiket',
         'id_user',
         'metode_pembayaran',

@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('histories', function (Blueprint $table) {
+        Schema::create('tikets', function (Blueprint $table) {
             $table->id();
-            $table->foreign('id_tiket')->references('id')->on('tikets');
+            $table->string('nomor_tiket');
+            $table->unsignedBigInteger('id_user');
+            $table->unsignedBigInteger('id_event');
             $table->foreign('id_user')->references('id')->on('users');
             $table->foreign('id_event')->references('id')->on('events');
             $table->string('nama_event');
-            $table->string('nomor_tiket');
             $table->string('metode_pembayaran');
             $table->integer('total_pembayaran');
             $table->enum('status_pembayaran', [
@@ -25,7 +26,6 @@ return new class extends Migration
                 'success',
                 'cancel'
             ]);
-            $table->date('tgl_pembayaran');
             $table->timestamps();
         });
     }
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('histories');
+        Schema::dropIfExists('tikets');
     }
 };

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('certificates', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_user');
+            $table->unsignedBigInteger('id_event');
             $table->foreign('id_user')->references('id')->on('users');
             $table->foreign('id_event')->references('id')->on('events');
             $table->string('nomor_certificate');

@@ -14,6 +14,23 @@ class EventResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'gambar' => $this->gambar,
+            'nama_event' => $this->nama_event,
+            'kategori' => $this->kategori,
+            'tema' => $this->tema,
+            'deskripsi' => $this->deskripsi,
+            'nama_penyelenggara' => $this->nama_penyelenggara,
+            'tgl_listing' => $this->tgl_listing,
+            'harga_tiket' => $this->harga_tiket,
+            'kuota' => $this->kuota,
+            'tempat' => $this->tempat,
+            'status_event' => $this->status_event,
+            'tgl_mulai' => $this->tgl_mulai,
+            'tgl_selesai' => $this->tgl_selesai,
+            'kontak_penyelenggara' => $this->kontak_penyelenggara,
+            'tipe_tiket' => $this->tipe_tiket,
+        ];
     }
 }

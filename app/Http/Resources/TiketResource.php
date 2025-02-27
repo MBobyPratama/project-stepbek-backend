@@ -14,6 +14,16 @@ class TiketResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'id_user' => $this->id_user,
+            'id_event' => $this->id_event,
+            'nomor_tiket' => $this->nomor_tiket,
+            'nama_event' => $this->nama_event,
+            'nama_user' => $this->nama_user,
+            'metode_pembayaran' => $this->metode_pembayaran,
+            'total_pembayaran' => $this->total_pembayaran,
+            'status_pembayaran' => $this->status_pembayaran,
+        ];
     }
 }
