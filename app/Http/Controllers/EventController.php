@@ -13,23 +13,51 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        $events = Event::all();
+        return response()->json($events);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
-    }
+    public function create() {}
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreEventRequest $request)
     {
-        //
+        $request->validated([
+            'nama_event' => 'required|string',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:3048',
+            'kategori' => 'required|string|in:seminar,workshop,kursus',
+            'tema' => 'required|string|in:keterampilan & kejuruan,teknologi & digital,bisnis & kewirausahaan,pengembangan diri & soft skills',
+            'deskripsi' => 'required|string',
+            'nama_penyelenggara' => 'required|string',
+            'tlg_listing' => 'required|date',
+            'harga_tiket' => 'required|integer',
+            'kuota' => 'required|integer',
+            'kota' => 'required|string',
+            'tempat' => 'required|string',
+            'status_event' => 'required|string|in:upcoming,ongoing,complete,canceled',
+            'tgl_mulai' => 'required|date',
+            'tgl_selesai' => 'required|date',
+            'kontak_penyelenggara' => 'required|string',
+            'tipe_tiket' => 'required|string|in:gratis,berbayar'
+        ]);
+
+        try {
+            $event = Event::create($request->all());
+            return response()->json([
+                'message' => 'Event created successfully',
+                'data' => $event
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Failed to create event',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     /**
