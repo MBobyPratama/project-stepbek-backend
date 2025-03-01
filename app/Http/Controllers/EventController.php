@@ -27,25 +27,6 @@ class EventController extends Controller
      */
     public function store(StoreEventRequest $request)
     {
-        $request->validated([
-            'nama_event' => 'required|string',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:3048',
-            'kategori' => 'required|string|in:seminar,workshop,kursus',
-            'tema' => 'required|string|in:keterampilan & kejuruan,teknologi & digital,bisnis & kewirausahaan,pengembangan diri & soft skills',
-            'deskripsi' => 'required|string',
-            'nama_penyelenggara' => 'required|string',
-            'tlg_listing' => 'required|date',
-            'harga_tiket' => 'required|integer',
-            'kuota' => 'required|integer',
-            'kota' => 'required|string',
-            'tempat' => 'required|string',
-            'status_event' => 'required|string|in:upcoming,ongoing,complete,canceled',
-            'tgl_mulai' => 'required|date',
-            'tgl_selesai' => 'required|date',
-            'kontak_penyelenggara' => 'required|string',
-            'tipe_tiket' => 'required|string|in:gratis,berbayar'
-        ]);
-
         try {
             $event = Event::create($request->all());
             return response()->json([
