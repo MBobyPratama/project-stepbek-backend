@@ -28,7 +28,7 @@ return new class extends Migration
             ]);
             $table->string('deskripsi');
             $table->string('nama_penyelenggara');
-            $table->date('tlg_listing');
+            $table->date('tgl_listing');
             $table->integer('harga_tiket');
             $table->integer('kuota');
             $table->string('kota');

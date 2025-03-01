@@ -25,6 +25,7 @@ class Event extends Model
         'tgl_listing',
         'harga_tiket',
         'kuota',
+        'kota',
         'tempat',
         'status_event',
         'tgl_mulai',
