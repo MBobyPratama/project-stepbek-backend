@@ -35,9 +35,21 @@ class StoreEventRequest extends FormRequest
             'tempat' => 'required|string',
             'status_event' => 'required|string|in:upcoming,ongoing,complete,canceled',
             'tgl_mulai' => 'required|date',
-            'tgl_selesai' => 'required|date',
+            'tgl_selesai' => 'required|date|after_or_equal:tgl_mulai',
             'kontak_penyelenggara' => 'required|string',
             'tipe_tiket' => 'required|string|in:gratis,berbayar'
+        ];
+    }
+
+    /**
+     * Get custom validation messages.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'tgl_selesai.after_or_equal' => 'Tanggal selesai tidak boleh lebih kecil dari tanggal mulai',
         ];
     }
 }
