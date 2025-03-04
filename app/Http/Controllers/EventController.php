@@ -9,12 +9,12 @@ use App\Http\Requests\UpdateEventRequest;
 class EventController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource.W
      */
     public function index()
     {
         $events = Event::all();
-        return response()->json($events);
+        return response()->json(['data' => $events]);
     }
 
     /**
