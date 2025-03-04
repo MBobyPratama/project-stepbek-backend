@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('pembayarans', function (Blueprint $table) {
             $table->id();
             $table->uuid('nomor_pembayaran');
-            $table->unsignedBigInteger('id_user');
-            $table->unsignedBigInteger('id_tiket');
+            $table->integer('id_user');
+            $table->integer('id_tiket');
             $table->foreign('id_tiket')->references('id')->on('tikets');
             $table->foreign('id_user')->references('id')->on('users');
             $table->string('metode_pembayaran');
