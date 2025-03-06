@@ -13,7 +13,8 @@ class TiketController extends Controller
      */
     public function index()
     {
-        //
+        $tikets = Tiket::all();
+        return response()->json(['data' => $tikets]);
     }
 
     /**
@@ -29,7 +30,18 @@ class TiketController extends Controller
      */
     public function store(StoreTiketRequest $request)
     {
-        //
+        try {
+            $tiket = Tiket::create($request->all());
+            return response()->json([
+                'message' => 'Tiket created successfully',
+                'data' => $tiket
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Failed to create tiket',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     /**

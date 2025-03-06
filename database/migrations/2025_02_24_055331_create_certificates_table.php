@@ -15,12 +15,13 @@ return new class extends Migration
             $table->id();
             $table->integer('id_user');
             $table->integer('id_event');
-            $table->foreign('id_user')->references('id')->on('users');
-            $table->foreign('id_event')->references('id')->on('events');
             $table->string('nomor_certificate');
             $table->string('nama_user');
             $table->string('nama_event');
             $table->timestamps();
+
+            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('id_event')->references('id')->on('events');
         });
     }
 
