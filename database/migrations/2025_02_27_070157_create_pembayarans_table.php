@@ -16,8 +16,6 @@ return new class extends Migration
             $table->uuid('nomor_pembayaran');
             $table->integer('id_user');
             $table->integer('id_tiket');
-            $table->foreign('id_tiket')->references('id')->on('tikets');
-            $table->foreign('id_user')->references('id')->on('users');
             $table->string('metode_pembayaran');
             $table->integer('total_pembayaran');
             $table->enum('status_pembayaran', [
@@ -27,6 +25,9 @@ return new class extends Migration
             ]);
             $table->date('tgl_pembayaran');
             $table->timestamps();
+
+            $table->foreign('id_tiket')->references('id')->on('tikets');
+            $table->foreign('id_user')->references('id')->on('users');
         });
     }
 
