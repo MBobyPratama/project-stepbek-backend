@@ -80,11 +80,9 @@ return [
         'Live' => 'api',
         'Prod' => 'https://project-stepbek-backend-production.up.railway.app/docs/api',
     ],
-    'servers' => null,
 
     'middleware' => [
         'web',
-        RestrictedDocsAccess::class,
     ],
 
     'extensions' => [],
