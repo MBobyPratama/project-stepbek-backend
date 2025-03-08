@@ -20,9 +20,6 @@ class AppServiceProvider extends ServiceProvider
     {
         $loader = \Illuminate\Foundation\AliasLoader::getInstance();
         $loader->alias('Debugbar', \Barryvdh\Debugbar\Facades\Debugbar::class);
-        $this->app->bind('path.public', function () {
-            return realpath(base_path() . '/../public_html');
-        });
     }
 
     /**
