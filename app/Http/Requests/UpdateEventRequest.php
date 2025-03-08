@@ -11,7 +11,7 @@ class UpdateEventRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,22 @@ class UpdateEventRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nama_event' => 'sometimes|string|max:255',
+            'gambar' => 'sometimes|string',
+            'kategori' => 'sometimes|string',
+            'tema' => 'sometimes|string',
+            'deskripsi' => 'sometimes|string',
+            'nama_penyelenggara' => 'sometimes|string',
+            'tgl_listing' => 'sometimes|date',
+            'harga_tiket' => 'sometimes|numeric',
+            'kuota' => 'sometimes|integer',
+            'kota' => 'sometimes|string',
+            'tempat' => 'sometimes|string',
+            'status_event' => 'sometimes|string',
+            'tgl_mulai' => 'sometimes|date',
+            'tgl_selesai' => 'sometimes|date',
+            'kontak_penyelenggara' => 'sometimes|string',
+            'tipe_tiket' => 'sometimes|string'
         ];
     }
 }
