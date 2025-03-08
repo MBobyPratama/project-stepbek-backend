@@ -36,7 +36,7 @@ class EventController extends Controller
                 $imageName = time() . '_' . $image->getClientOriginalName();
 
                 // Store image in public/storage/events directory
-                $image->storeAs('public/events', $imageName);
+                $image->storeAs('events', $imageName);
 
                 // Update the validated data with image path
                 $validatedData['gambar'] = 'events/' . $imageName;
