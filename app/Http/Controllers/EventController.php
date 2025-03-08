@@ -28,7 +28,19 @@ class EventController extends Controller
     public function store(StoreEventRequest $request)
     {
         try {
-            $event = Event::create($request->all());
+            $data = $request->all();
+
+            if ($request->hasFile('gambar')) {
+                $file = $request->file('gambar');
+                $filename = time() . '_' . $file->getClientOriginalName();
+
+                $path = $file->storeAs('public/events', $filename);
+
+                $data['gambar'] = asset('storage/events/' . $filename);
+            }
+
+            $event = Event::create($data);
+
             return response()->json([
                 'message' => 'Event created successfully',
                 'data' => $event
@@ -46,7 +58,17 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        try {
+            return response()->json([
+                'message' => 'Event retrieved successfully',
+                'data' => $event
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Failed to retrieve event',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     /**
@@ -62,7 +84,18 @@ class EventController extends Controller
      */
     public function update(UpdateEventRequest $request, Event $event)
     {
-        //
+        try {
+            $event->update($request->validated());
+            return response()->json([
+                'message' => 'Event updated successfully',
+                'data' => $event
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Failed to update event',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     /**
@@ -70,6 +103,16 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+        try {
+            $event->delete();
+            return response()->json([
+                'message' => 'Event deleted successfully'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Failed to delete event',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 }
