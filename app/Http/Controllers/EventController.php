@@ -28,18 +28,21 @@ class EventController extends Controller
     public function store(StoreEventRequest $request)
     {
         try {
-            $data = $request->all();
+            $validatedData = $request->validated();
 
+            // Handle image upload if exists
             if ($request->hasFile('gambar')) {
-                $file = $request->file('gambar');
-                $filename = time() . '_' . $file->getClientOriginalName();
+                $image = $request->file('gambar');
+                $imageName = time() . '_' . $image->getClientOriginalName();
 
-                $path = $file->storeAs('public/events', $filename);
+                // Store image in public/storage/events directory
+                $image->storeAs('public/events', $imageName);
 
-                $data['gambar'] = asset('storage/events/' . $filename);
+                // Update the validated data with image path
+                $validatedData['gambar'] = 'events/' . $imageName;
             }
 
-            $event = Event::create($data);
+            $event = Event::create($validatedData);
 
             return response()->json([
                 'message' => 'Event created successfully',
