@@ -30,15 +30,12 @@ class EventController extends Controller
         try {
             $validatedData = $request->validated();
 
-            // Handle image upload if exists
             if ($request->hasFile('gambar')) {
                 $image = $request->file('gambar');
                 $imageName = time() . '_' . $image->getClientOriginalName();
 
-                // Store image in public/storage/events directory
-                $image->storeAs('public/events', $imageName);
+                $image->storeAs('events', $imageName);
 
-                // Update the validated data with image path
                 $validatedData['gambar'] = 'events/' . $imageName;
             }
 
@@ -59,9 +56,10 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Event $event)
+    public function show(Event $event, string $id)
     {
         try {
+            $event = Event::find($id);
             return response()->json([
                 'message' => 'Event retrieved successfully',
                 'data' => $event

@@ -13,7 +13,7 @@ return [
      * Your API domain. By default, app domain is used. This is also a part of the default API routes
      * matcher, so when implementing your own, make sure you use this config if needed.
      */
-    'api_domain' => 'https://project-stepbek-backend-production.up.railway.app/docs/api',
+    'api_domain' => 'https://project-stepbek-backend-production.up.railway.app/api',
 
     /*
      * The path where your OpenAPI specification will be exported.
@@ -78,7 +78,7 @@ return [
      */
     'servers' => [
         'Live' => 'api',
-        'Prod' => 'https://project-stepbek-backend-production.up.railway.app/docs/api',
+        'Prod' => 'https://project-stepbek-backend-production.up.railway.app/api',
     ],
 
     'middleware' => [
