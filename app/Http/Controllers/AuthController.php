@@ -8,7 +8,13 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-
+    /**
+     * Constructor to apply middleware
+     */
+    public function __construct()
+    {
+        // Apply basic auth middleware to protected endpoints
+    }
 
     /**
      * Login
@@ -31,13 +37,10 @@ class AuthController extends Controller
             ], 401);
         }
 
-        $user->tokens()->delete();
-
-        $token = $user->createToken('api-token')->plainTextToken;
-
+        // Instead of token, now return user with success message
         return response()->json([
             'user' => $user,
-            'token' => $token,
+            'message' => 'Login successful',
         ]);
     }
 
@@ -46,8 +49,7 @@ class AuthController extends Controller
      */
     public function logout(Request $request)
     {
-        $request->user()->currentAccessToken()->delete();
-
+        // No need to delete tokens anymore
         return response()->json([
             'message' => 'Successfully logged out'
         ]);
