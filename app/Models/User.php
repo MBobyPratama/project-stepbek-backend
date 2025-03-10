@@ -28,6 +28,8 @@ class User extends Authenticatable
         'alamat',
         'gauth_id',
         'gauth_type',
+        'google_id',
+        'avatar',
     ];
 
     /**

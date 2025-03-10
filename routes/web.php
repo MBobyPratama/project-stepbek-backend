@@ -11,8 +11,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('oauth/google', [OauthController::class, 'redirectToProvider'])->middleware(['web'])->name('oauth.google');
-
-Route::get('oauth/google/callback', [OauthController::class, 'handleProviderCallback'])
-    ->middleware(['web'])
-    ->name('oauth.google.callback');
+Route::get('oauth/google', [OauthController::class, 'redirectToGoogle']);
+Route::get('oauth/google/callback', [OauthController::class, 'handleGoogleCallback']);

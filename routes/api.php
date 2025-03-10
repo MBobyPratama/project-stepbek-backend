@@ -10,12 +10,12 @@ use Illuminate\Support\Facades\Route;
 // Public routes
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
-// Route::get('/oauth/google', 'Auth\OauthController@redirectToProvider')
-//     ->name('oauth.google');
 
-// Route::get('/oauth/google/callback', 'Auth\OauthController@handleProviderCallback');
-Route::get('oauth/google', [OauthController::class, 'redirectToProvider'])->middleware(['web'])->name('oauth.google');
-Route::get('oauth/google/callback', [OauthController::class, 'handleProviderCallback'])->middleware(['web'])->name('oauth.google.callback');
+// OAuth routes
+Route::prefix('oauth')->group(function () {
+    Route::get('google', [OauthController::class, 'redirectToGoogle']);
+    Route::get('google/callback', [OauthController::class, 'handleGoogleCallback']);
+});
 
 // Protected routes
 Route::middleware('auth:sanctum')->group(function () {
