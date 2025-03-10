@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('id_user');
             $table->integer('id_event');
-            $table->integer('id_tiket');
+            $table->integer('id_tiket')->nullable();
             $table->string('nama_event');
             $table->string('nomor_tiket');
             $table->string('metode_pembayaran');
@@ -25,7 +25,8 @@ return new class extends Migration
                 'success',
                 'cancel'
             ]);
-            $table->date('tgl_pembayaran');
+            $table->date('tgl_pembayaran')->nullable();
+            $table->string('order_id')->nullable()->after('tgl_pembayaran');
             $table->timestamps();
 
             $table->foreign('id_tiket')->references('id')->on('tikets');

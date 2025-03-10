@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->string('nama_event');
-            $table->string('gambar');
+            $table->string('gambar')->nullable();
             $table->enum('kategori', [
                 'seminar',
                 'workshop',

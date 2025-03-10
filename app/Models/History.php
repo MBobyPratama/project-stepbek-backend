@@ -25,5 +25,6 @@ class History extends Model
         'total_pembayaran',
         'status_pembayaran',
         'tgl_pembayaran',
+        'order_id',
     ];
 }
