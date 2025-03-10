@@ -55,13 +55,13 @@ class OauthController extends Controller
             }
 
             // Create token for API authentication
-            $token = $user->createToken('google-token')->plainTextToken;
+            // $token = $user->createToken('google-token')->plainTextToken;
 
             return response()->json([
                 'status' => 'success',
                 'message' => 'Successfully logged in with Google',
                 'user' => $user,
-                'token' => $token,
+                // 'token' => $token,
             ]);
         } catch (Exception $e) {
             return response()->json([
