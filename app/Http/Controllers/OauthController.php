@@ -39,29 +39,30 @@ class OauthController extends Controller
                     'user' => $finduser,
                     'token' => $token
                 ]);
-            } else {
-                $newUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'gauth_id' => $user->id,
-                    'gauth_type' => 'google',
-                    'password' => encrypt('admin@123')
-                ]);
-
-                Auth::login($newUser);
-                $token = $newUser->createToken('auth-token')->plainTextToken;
-
-                return response()->json([
-                    'status' => 'success',
-                    'message' => 'Registration and login successful',
-                    'user' => $newUser,
-                    'token' => $token
-                ]);
             }
+
+            $newUser = User::create([
+                'name' => $user->name,
+                'email' => $user->email,
+                'gauth_id' => $user->id,
+                'gauth_type' => 'google',
+                'password' => encrypt('admin@123')
+            ]);
+
+            Auth::login($newUser);
+            $token = $newUser->createToken('auth-token')->plainTextToken;
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Registration and login successful',
+                'user' => $newUser,
+                'token' => $token
+            ]);
         } catch (Exception $e) {
             return response()->json([
                 'status' => 'error',
-                'message' => $e->getMessage()
+                'message' => 'Authentication failed',
+                'error' => $e->getMessage()
             ], 500);
         }
     }

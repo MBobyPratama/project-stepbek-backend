@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
 Route::get('oauth/google', [OauthController::class, 'redirectToProvider'])->middleware(['web'])->name('oauth.google');
-Route::get('oauth/google/callback', [OauthController::class, 'handleProviderCallback'])->middleware(['web'])->name('oauth.google.callback');
+// Route::get('oauth/google/callback', [OauthController::class, 'handleProviderCallback'])->middleware(['web'])->name('oauth.google.callback');
 
 // Protected routes
 Route::middleware('auth:sanctum')->group(function () {
