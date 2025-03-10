@@ -26,6 +26,8 @@ class User extends Authenticatable
         'role',
         'nomor_telepon',
         'alamat',
+        'gauth_id',
+        'gauth_type',
     ];
 
     /**
