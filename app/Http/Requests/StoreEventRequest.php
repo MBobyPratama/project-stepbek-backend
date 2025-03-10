@@ -36,7 +36,7 @@ class StoreEventRequest extends FormRequest
             'status_event' => 'required|string|in:upcoming,ongoing,complete,canceled',
             'tgl_mulai' => 'required|date',
             'tgl_selesai' => 'required|date|after_or_equal:tgl_mulai',
-            'kontak_penyelenggara' => 'required|string',
+            'kontak_penyelenggara' => 'required|string|max:13',
             'tipe_tiket' => 'required|string|in:gratis,berbayar'
         ];
     }
@@ -50,6 +50,7 @@ class StoreEventRequest extends FormRequest
     {
         return [
             'tgl_selesai.after_or_equal' => 'Tanggal selesai tidak boleh lebih kecil dari tanggal mulai',
+            'kontak_penyelenggara.max' => 'Kontak penyelenggara maksimal 13 karakter',
         ];
     }
 }
