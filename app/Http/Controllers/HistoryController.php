@@ -9,6 +9,7 @@ use App\Http\Requests\StoreHistoryRequest;
 use App\Http\Requests\UpdateHistoryRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Midtrans\Config;
 use Midtrans\Snap;
@@ -47,6 +48,11 @@ class HistoryController extends Controller
      */
     public function initiatePayment(Request $request)
     {
+        Log::debug('Midtrans Configuration', [
+            'serverKey' => \Midtrans\Config::$serverKey,
+            'isProduction' => \Midtrans\Config::$isProduction,
+        ]);
+
         // Validate request
         $request->validate([
             'event_id' => 'required|exists:events,id',
