@@ -122,7 +122,7 @@ class HistoryController extends Controller
                 'status' => 'success',
                 'snap_token' => $snapToken,
                 'order_id' => $orderId,
-                'redirect_url' => "https://app.sandbox.midtrans.com/snap/v2/vtweb/" . $snapToken
+                'redirect_url' => "https://app.midtrans.com/snap/v2/vtweb/" . $snapToken
             ]);
         } catch (\Exception $e) {
             return response()->json([
